@@ -1,0 +1,35 @@
+class Solution {
+  public:
+    int search(vector<int>& arr, int key) {
+        // Code Here
+          int n = arr.size();
+        int low =0;
+        int high =n-1;
+        while(low<=high){
+          int  mid =  high +(low-high)/2;
+           if(arr[mid]==key){
+               return  mid;
+           }
+           // left prortion is sorted
+           if(arr[low]<=arr[mid]){
+              // check if key is found in left sorted part
+              if(key>=arr[low] && key<=arr[mid]){
+                   high = mid-1;
+              }
+              else{
+                   low = mid+1;
+              }
+           }
+           else{   // right part is sorted
+                 if(key>=arr[mid] && key<=arr[high]){
+                      low = mid+1;
+                 }
+                 else{
+                     high =mid-1;
+                 }
+           }
+        }
+        return -1;
+    }
+};
+
